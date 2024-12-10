@@ -5,3 +5,5 @@ parameters:
 		- stubs/Money/Money.stub
 		- stubs/Money/MoneyFormatter.stub
 		- stubs/Money/MoneyParser.stub
+rules:
+    - Ibexa\PHPStan\Rules\NoConfigResolverParametersInConstructorRule
