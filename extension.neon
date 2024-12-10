@@ -1,0 +1,7 @@
+parameters:
+	stubFiles:
+		- stubs/Money/Currencies.stub
+		- stubs/Money/Currency.stub
+		- stubs/Money/Money.stub
+		- stubs/Money/MoneyFormatter.stub
+		- stubs/Money/MoneyParser.stub

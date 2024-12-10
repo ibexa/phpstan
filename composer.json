@@ -1,0 +1,21 @@
+{
+  "name": "ibexa/phpstan",
+  "license": "proprietary",
+  "type": "ibexa-bundle",
+  "keywords": [
+    "ibexa-dxp"
+  ],
+  "require": {
+    "php": "^7.4 || ^8.0"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "phpstan": {
+      "includes": [
+        "extension.neon"
+      ]
+    }
+  }
+}

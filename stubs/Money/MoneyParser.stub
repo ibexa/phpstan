@@ -1,0 +1,12 @@
+<?php
+
+namespace Money;
+
+interface MoneyParser
+{
+    /**
+     * @param numeric-string $money
+     * @param Currency|string|null $forceCurrency
+     */
+    public function parse($money, $forceCurrency = null): Money;
+}

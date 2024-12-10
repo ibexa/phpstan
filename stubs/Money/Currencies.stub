@@ -1,0 +1,11 @@
+<?php
+declare(strict_types=1);
+
+namespace Money;
+
+/**
+ * @extends \IteratorAggregate<string, \Money\Currency>
+ */
+interface Currencies extends \IteratorAggregate
+{
+}

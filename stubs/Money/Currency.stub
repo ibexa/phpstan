@@ -1,0 +1,13 @@
+<?php
+declare(strict_types=1);
+
+namespace Money;
+
+interface Currency
+{
+    /** @param non-empty-string $code */
+    public function __construct(string $code);
+
+    /** @return non-empty-string */
+    public function getCode(): string;
+}

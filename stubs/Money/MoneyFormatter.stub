@@ -1,0 +1,11 @@
+<?php
+
+namespace Money;
+
+interface MoneyFormatter
+{
+    /**
+     * @return numeric-string
+     */
+    public function format(Money $money);
+}
