@@ -9,3 +9,4 @@ rules:
     - Ibexa\PHPStan\Rules\NoConfigResolverParametersInConstructorRule
     - Ibexa\PHPStan\Rules\RequireInterfaceInDependenciesRule
     - Ibexa\PHPStan\Rules\NamingConventionRule
+    - Ibexa\PHPStan\Rules\FinalClassRule
