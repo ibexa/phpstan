@@ -6,6 +6,8 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\PHPStan\Rules\Fixtures\FinalRule;
+namespace Ibexa\Tests\PHPStan\Rules\Fixtures\FinalClass;
 
-abstract class AbstractClass {}
+trait SomeTrait
+{
+}

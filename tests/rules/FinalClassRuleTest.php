@@ -26,11 +26,11 @@ final class FinalClassRuleTest extends RuleTestCase
     {
         $this->analyse(
             [
-                __DIR__ . '/Fixtures/FinalRule/NonFinalClass.php',
+                __DIR__ . '/Fixtures/FinalClass/NonFinalClass.php',
             ],
             [
                 [
-                    'Class Ibexa\Tests\PHPStan\Rules\Fixtures\FinalRule\NonFinalClass is not final. All non-abstract classes should be final.',
+                    'Class Ibexa\Tests\PHPStan\Rules\Fixtures\FinalClass\NonFinalClass is not final. All non-abstract classes should be final.',
                     11,
                     'Add "final" keyword to the class declaration.',
                 ],
@@ -42,10 +42,10 @@ final class FinalClassRuleTest extends RuleTestCase
     {
         $this->analyse(
             [
-                __DIR__ . '/Fixtures/FinalRule/FinalClass.php',
-                __DIR__ . '/Fixtures/FinalRule/AbstractClass.php',
-                __DIR__ . '/Fixtures/FinalRule/SomeInterface.php',
-                __DIR__ . '/Fixtures/FinalRule/SomeTrait.php',
+                __DIR__ . '/Fixtures/FinalClass/FinalClass.php',
+                __DIR__ . '/Fixtures/FinalClass/AbstractClass.php',
+                __DIR__ . '/Fixtures/FinalClass/SomeInterface.php',
+                __DIR__ . '/Fixtures/FinalClass/SomeTrait.php',
             ],
             []
         );
