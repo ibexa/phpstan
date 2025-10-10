@@ -6,12 +6,8 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\PHPStan\Rules\Fixtures\Dependencies;
+namespace Ibexa\Tests\PHPStan\Rules\Fixtures\NamingConvention;
 
-class ClassWithoutInterface
+trait CorrectNameTrait
 {
-    public function doSomething(): void
-    {
-        // Implementation
-    }
 }

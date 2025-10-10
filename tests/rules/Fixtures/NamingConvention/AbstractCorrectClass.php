@@ -6,9 +6,8 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\PHPStan\Rules\Fixtures\Dependencies;
+namespace Ibexa\Tests\PHPStan\Rules\Fixtures\NamingConvention;
 
-interface TestInterface
+abstract class AbstractCorrectClass
 {
-    public function doSomething(): void;
 }
