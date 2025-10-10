@@ -14,13 +14,10 @@ use Ibexa\Tests\PHPStan\Rules\Fixtures\Dependencies\TestInterface;
 
 final class RequireInterfaceInDependenciesFixture
 {
-    /** @phpstan-ignore property.onlyWritten */
     private ConcreteClass $concreteClass;
 
-    /** @phpstan-ignore property.onlyWritten */
     private TestInterface $testInterface;
 
-    /** @phpstan-ignore property.onlyWritten */
     private ClassWithoutInterface $classWithoutInterface;
 
     public function __construct(

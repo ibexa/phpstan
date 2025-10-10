@@ -33,7 +33,6 @@ final class RequireInterfaceInDependenciesRule implements Rule
         }
 
         foreach ($node->params as $param) {
-
             if (!$param->type instanceof Node\Name) {
                 continue;
             }

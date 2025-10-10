@@ -31,11 +31,11 @@ final class RequireInterfaceInDependenciesRuleTest extends RuleTestCase
             [
                 [
                     'Parameter $concreteClass uses concrete class Ibexa\Tests\PHPStan\Rules\Fixtures\Dependencies\ConcreteClass instead of an interface. Available interfaces: Ibexa\Tests\PHPStan\Rules\Fixtures\Dependencies\TestInterface',
-                    21,
+                    23,
                 ],
                 [
                     'Parameter $class uses concrete class Ibexa\Tests\PHPStan\Rules\Fixtures\Dependencies\ConcreteClass instead of an interface. Available interfaces: Ibexa\Tests\PHPStan\Rules\Fixtures\Dependencies\TestInterface',
-                    31,
+                    33,
                 ],
             ]
         );

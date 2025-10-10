@@ -1,0 +1,16 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Property Ibexa\\\\Tests\\\\PHPStan\\\\Rules\\\\Fixtures\\\\RequireInterfaceInDependenciesFixture\\:\\:\\$classWithoutInterface is never read, only written\\.$#"
+			count: 1
+			path: tests/rules/Fixtures/RequireInterfaceInDependenciesFixture.php
+
+		-
+			message: "#^Property Ibexa\\\\Tests\\\\PHPStan\\\\Rules\\\\Fixtures\\\\RequireInterfaceInDependenciesFixture\\:\\:\\$concreteClass is never read, only written\\.$#"
+			count: 1
+			path: tests/rules/Fixtures/RequireInterfaceInDependenciesFixture.php
+
+		-
+			message: "#^Property Ibexa\\\\Tests\\\\PHPStan\\\\Rules\\\\Fixtures\\\\RequireInterfaceInDependenciesFixture\\:\\:\\$testInterface is never read, only written\\.$#"
+			count: 1
+			path: tests/rules/Fixtures/RequireInterfaceInDependenciesFixture.php
