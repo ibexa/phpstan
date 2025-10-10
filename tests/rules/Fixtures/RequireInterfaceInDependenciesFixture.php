@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\PHPStan\Rules\Fixtures;
 
-use Ibexa\Tests\PHPStan\Rules\Fixtures\Dependencies\ClassWithoutInterface;
-use Ibexa\Tests\PHPStan\Rules\Fixtures\Dependencies\ConcreteClass;
-use Ibexa\Tests\PHPStan\Rules\Fixtures\Dependencies\TestInterface;
+use Ibexa\Tests\PHPStan\Rules\Fixtures\RequireInterfaceInDependencies\ClassWithoutInterface;
+use Ibexa\Tests\PHPStan\Rules\Fixtures\RequireInterfaceInDependencies\ConcreteClass;
+use Ibexa\Tests\PHPStan\Rules\Fixtures\RequireInterfaceInDependencies\TestInterface;
 
 final class RequireInterfaceInDependenciesFixture
 {

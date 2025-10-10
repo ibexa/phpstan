@@ -6,14 +6,8 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\PHPStan\Rules\Fixtures;
+namespace Ibexa\Tests\PHPStan\Rules\Fixtures\FinalClass;
 
-interface SomeInterface {}
-
-trait SomeTrait {}
-
-abstract class AbstractClass {}
-
-class NonFinalClass {}
-
-final class FinalClass {}
+final class FinalClass
+{
+}

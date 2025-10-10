@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\PHPStan\Rules\Fixtures\Dependencies;
+namespace Ibexa\Tests\PHPStan\Rules\Fixtures\RequireInterfaceInDependencies;
 
-class ConcreteClass implements TestInterface
+class ClassWithoutInterface
 {
     public function doSomething(): void
     {

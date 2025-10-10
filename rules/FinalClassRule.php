@@ -10,9 +10,9 @@ namespace Ibexa\PHPStan\Rules;
 
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
-use PHPStan\Reflection\ReflectionProvider;
 
 /**
  * @implements \PHPStan\Rules\Rule<\PhpParser\Node\Stmt\Class_>
@@ -71,7 +71,7 @@ final class FinalClassRule implements Rule
             )
                 ->identifier('class.notFinal')
                 ->tip('Add "final" keyword to the class declaration.')
-                ->build()
+                ->build(),
         ];
     }
 }
