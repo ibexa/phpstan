@@ -26,7 +26,12 @@ final class NamingConventionRuleTest extends RuleTestCase
     {
         $this->analyse(
             [
-                __DIR__ . '/Fixtures/NamingConventionFixture.php',
+                __DIR__ . '/Fixtures/NamingConvention/WrongName.php',
+                __DIR__ . '/Fixtures/NamingConvention/SimpleThing.php',
+                __DIR__ . '/Fixtures/NamingConvention/SimpleClass.php',
+                __DIR__ . '/Fixtures/NamingConvention/CorrectNameInterface.php',
+                __DIR__ . '/Fixtures/NamingConvention/CorrectNameTrait.php',
+                __DIR__ . '/Fixtures/NamingConvention/AbstractCorrectClass.php',
             ],
             [
                 [
@@ -35,11 +40,11 @@ final class NamingConventionRuleTest extends RuleTestCase
                 ],
                 [
                     'Trait "SimpleThing" should have "Trait" suffix',
-                    19,
+                    11,
                 ],
                 [
                     'Abstract class "SimpleClass" should have "Abstract" prefix',
-                    27,
+                    11,
                 ],
             ]
         );

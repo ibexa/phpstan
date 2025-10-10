@@ -6,28 +6,8 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\PHPStan\Rules\Fixtures;
-
-interface WrongName
-{
-}
-
-interface CorrectNameInterface
-{
-}
+namespace Ibexa\Tests\PHPStan\Rules\Fixtures\NamingConvention;
 
 trait SimpleThing
-{
-}
-
-trait CorrectNameTrait
-{
-}
-
-abstract class SimpleClass
-{
-}
-
-abstract class AbstractCorrectClass
 {
 }
