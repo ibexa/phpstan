@@ -16,7 +16,7 @@ use PHPStan\Rules\RuleErrorBuilder;
 /**
  * @implements \PHPStan\Rules\Rule<\PhpParser\Node\Stmt\ClassLike>
  */
-final class NamingConventionRule implements Rule
+final class ClassTypeNamingRule implements Rule
 {
     public function getNodeType(): string
     {
