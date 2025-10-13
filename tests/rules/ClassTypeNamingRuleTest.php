@@ -8,30 +8,30 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\PHPStan\Rules;
 
-use Ibexa\PHPStan\Rules\NamingConventionRule;
+use Ibexa\PHPStan\Rules\ClassTypeNamingRule;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
 /**
- * @extends \PHPStan\Testing\RuleTestCase<\Ibexa\PHPStan\Rules\NamingConventionRule>
+ * @extends \PHPStan\Testing\RuleTestCase<\Ibexa\PHPStan\Rules\ClassTypeNamingRule>
  */
-final class NamingConventionRuleTest extends RuleTestCase
+final class ClassTypeNamingRuleTest extends RuleTestCase
 {
     protected function getRule(): Rule
     {
-       return new NamingConventionRule();
+       return new ClassTypeNamingRule();
     }
 
     public function testRule(): void
     {
         $this->analyse(
             [
-                __DIR__ . '/Fixtures/NamingConvention/WrongName.php',
-                __DIR__ . '/Fixtures/NamingConvention/SimpleThing.php',
-                __DIR__ . '/Fixtures/NamingConvention/SimpleClass.php',
-                __DIR__ . '/Fixtures/NamingConvention/CorrectNameInterface.php',
-                __DIR__ . '/Fixtures/NamingConvention/CorrectNameTrait.php',
-                __DIR__ . '/Fixtures/NamingConvention/AbstractCorrectClass.php',
+                __DIR__ . '/Fixtures/ClassTypeNaming/WrongName.php',
+                __DIR__ . '/Fixtures/ClassTypeNaming/SimpleThing.php',
+                __DIR__ . '/Fixtures/ClassTypeNaming/SimpleClass.php',
+                __DIR__ . '/Fixtures/ClassTypeNaming/CorrectNameInterface.php',
+                __DIR__ . '/Fixtures/ClassTypeNaming/CorrectNameTrait.php',
+                __DIR__ . '/Fixtures/ClassTypeNaming/AbstractCorrectClass.php',
             ],
             [
                 [

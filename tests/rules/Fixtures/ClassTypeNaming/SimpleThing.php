@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\PHPStan\Rules\Fixtures\NamingConvention;
+namespace Ibexa\Tests\PHPStan\Rules\Fixtures\ClassTypeNaming;
 
 trait SimpleThing
 {
