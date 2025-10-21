@@ -17,7 +17,7 @@ use PHPStan\Rules\RuleErrorBuilder;
 /**
  * @implements \PHPStan\Rules\Rule<\PhpParser\Node\Stmt\ClassMethod>
  */
-final class RequireInterfaceInDependenciesRule implements Rule
+final class RequireAbstractionInDependenciesRule implements Rule
 {
     public function getNodeType(): string
     {
@@ -33,7 +33,6 @@ final class RequireInterfaceInDependenciesRule implements Rule
         }
 
         foreach ($node->params as $param) {
-
             if (!$param->type instanceof Node\Name) {
                 continue;
             }
@@ -47,17 +46,42 @@ final class RequireInterfaceInDependenciesRule implements Rule
                 continue;
             }
 
-            if (!interface_exists($typeName) && class_exists($typeName)) {
-                // Check if this class implements any interface
-                $interfaces = class_implements($typeName);
+            // Skip interfaces - they are always acceptable
+            if (interface_exists($typeName)) {
+                continue;
+            }
 
-                if (!empty($interfaces)) {
+            // Check if it's a class
+            if (class_exists($typeName)) {
+                $reflection = new \ReflectionClass($typeName);
+
+                // Skip abstract classes - they are acceptable
+                if ($reflection->isAbstract()) {
+                    continue;
+                }
+
+                // This is a concrete class - check if it has interfaces or extends an abstract class
+                $interfaces = class_implements($typeName);
+                $parentClass = $reflection->getParentClass();
+                $hasAbstractParent = $parentClass && $parentClass->isAbstract();
+
+                if (!empty($interfaces) || $hasAbstractParent) {
+                    $suggestions = [];
+
+                    if (!empty($interfaces)) {
+                        $suggestions[] = 'Available interfaces: ' . implode(', ', $interfaces);
+                    }
+
+                    if ($hasAbstractParent) {
+                        $suggestions[] = 'Abstract parent: ' . $parentClass->getName();
+                    }
+
                     $errors[] = RuleErrorBuilder::message(
                         sprintf(
-                            'Parameter $%s uses concrete class %s instead of an interface. Available interfaces: %s',
+                            'Parameter $%s uses concrete class %s instead of an interface or abstract class. %s',
                             is_string($param->var->name) ? $param->var->name : $param->var->name->getType(),
                             $typeName,
-                            implode(', ', $interfaces)
+                            implode('. ', $suggestions)
                         )
                     )->build();
                 }

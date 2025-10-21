@@ -6,8 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\PHPStan\Rules\Fixtures\NamingConvention;
+namespace Ibexa\Tests\PHPStan\Rules\Fixtures\RequireAbstractionInDependencies;
 
-trait CorrectNameTrait
+class ConcreteClass implements TestInterface
 {
+    public function doSomething(): void
+    {
+        // Implementation
+    }
 }

@@ -6,8 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\PHPStan\Rules\Fixtures\NamingConvention;
+namespace Ibexa\Tests\PHPStan\Rules\Fixtures\RequireAbstractionInDependencies;
 
-trait SimpleThing
+class ClassWithoutInterface
 {
+    public function doNothing(): void
+    {
+        // Implementation
+    }
 }

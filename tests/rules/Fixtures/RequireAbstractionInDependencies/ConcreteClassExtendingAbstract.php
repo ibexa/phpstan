@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\PHPStan\Rules\Fixtures\RequireInterfaceInDependencies;
+namespace Ibexa\Tests\PHPStan\Rules\Fixtures\RequireAbstractionInDependencies;
 
-class ConcreteClass implements TestInterface
+class ConcreteClassExtendingAbstract extends AbstractClass
 {
-    public function doSomething(): void
+    public function doSomethingAbstract(): void
     {
         // Implementation
     }

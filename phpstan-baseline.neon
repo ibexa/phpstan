@@ -1,0 +1,26 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Property Ibexa\\\\Tests\\\\PHPStan\\\\Rules\\\\Fixtures\\\\RequireAbstractionInDependenciesFixture\\:\\:\\$abstractClass is never read, only written\\.$#"
+			count: 1
+			path: tests/rules/Fixtures/RequireAbstractionInDependenciesFixture.php
+
+		-
+			message: "#^Property Ibexa\\\\Tests\\\\PHPStan\\\\Rules\\\\Fixtures\\\\RequireAbstractionInDependenciesFixture\\:\\:\\$classWithoutInterface is never read, only written\\.$#"
+			count: 1
+			path: tests/rules/Fixtures/RequireAbstractionInDependenciesFixture.php
+
+		-
+			message: "#^Property Ibexa\\\\Tests\\\\PHPStan\\\\Rules\\\\Fixtures\\\\RequireAbstractionInDependenciesFixture\\:\\:\\$concreteClass is never read, only written\\.$#"
+			count: 1
+			path: tests/rules/Fixtures/RequireAbstractionInDependenciesFixture.php
+
+		-
+			message: "#^Property Ibexa\\\\Tests\\\\PHPStan\\\\Rules\\\\Fixtures\\\\RequireAbstractionInDependenciesFixture\\:\\:\\$concreteExtendingAbstract is never read, only written\\.$#"
+			count: 1
+			path: tests/rules/Fixtures/RequireAbstractionInDependenciesFixture.php
+
+		-
+			message: "#^Property Ibexa\\\\Tests\\\\PHPStan\\\\Rules\\\\Fixtures\\\\RequireAbstractionInDependenciesFixture\\:\\:\\$testInterface is never read, only written\\.$#"
+			count: 1
+			path: tests/rules/Fixtures/RequireAbstractionInDependenciesFixture.php

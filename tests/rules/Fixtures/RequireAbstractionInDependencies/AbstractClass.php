@@ -6,8 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\PHPStan\Rules\Fixtures\NamingConvention;
+namespace Ibexa\Tests\PHPStan\Rules\Fixtures\RequireAbstractionInDependencies;
 
-abstract class AbstractCorrectClass
+abstract class AbstractClass
 {
+    abstract public function doSomethingAbstract(): void;
 }
