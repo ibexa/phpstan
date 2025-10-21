@@ -7,3 +7,4 @@ parameters:
 		- stubs/Money/MoneyParser.stub
 rules:
     - Ibexa\PHPStan\Rules\NoConfigResolverParametersInConstructorRule
+    - Ibexa\PHPStan\Rules\FinalClassRule
