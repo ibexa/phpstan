@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\PHPStan\Rules\Fixtures\FinalClass;
 
+/**
+ * @phpstan-ignore trait.unused
+ */
 trait SomeTrait
 {
 }
