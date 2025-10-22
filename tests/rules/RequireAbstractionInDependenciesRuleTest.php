@@ -19,7 +19,9 @@ final class RequireAbstractionInDependenciesRuleTest extends RuleTestCase
 {
     protected function getRule(): Rule
     {
-       return new RequireAbstractionInDependenciesRule();
+       return new RequireAbstractionInDependenciesRule(
+           $this->createReflectionProvider()
+       );
     }
 
     public function testRule(): void

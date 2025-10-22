@@ -11,7 +11,9 @@ namespace Ibexa\PHPStan\Rules;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Error;
 use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
 
 /**
@@ -19,6 +21,14 @@ use PHPStan\Rules\RuleErrorBuilder;
  */
 final class RequireAbstractionInDependenciesRule implements Rule
 {
+    private ReflectionProvider $reflectionProvider;
+
+    public function __construct(
+        ReflectionProvider $reflectionProvider
+    ) {
+        $this->reflectionProvider = $reflectionProvider;
+    }
+
     public function getNodeType(): string
     {
         return Node\Stmt\ClassMethod::class;
@@ -26,78 +36,81 @@ final class RequireAbstractionInDependenciesRule implements Rule
 
     public function processNode(Node $node, Scope $scope): array
     {
-        $errors = [];
-
         if (!$node->params) {
             return [];
         }
 
+        $errors = [];
+
         foreach ($node->params as $param) {
-            if (!$param->type instanceof Node\Name) {
-                continue;
-            }
-            if ($param->var instanceof Error) {
-                continue;
-            }
-            $typeName = $param->type->toString();
-
-            // Skip built-in types and primitives
-            if ($this->isBuiltInType($typeName)) {
-                continue;
-            }
-
-            // Skip interfaces - they are always acceptable
-            if (interface_exists($typeName)) {
-                continue;
-            }
-
-            // Check if it's a class
-            if (class_exists($typeName)) {
-                $reflection = new \ReflectionClass($typeName);
-
-                // Skip abstract classes - they are acceptable
-                if ($reflection->isAbstract()) {
-                    continue;
-                }
-
-                // This is a concrete class - check if it has interfaces or extends an abstract class
-                $interfaces = class_implements($typeName);
-                $parentClass = $reflection->getParentClass();
-                $hasAbstractParent = $parentClass && $parentClass->isAbstract();
-
-                if (!empty($interfaces) || $hasAbstractParent) {
-                    $suggestions = [];
-
-                    if (!empty($interfaces)) {
-                        $suggestions[] = 'Available interfaces: ' . implode(', ', $interfaces);
-                    }
-
-                    if ($hasAbstractParent) {
-                        $suggestions[] = 'Abstract parent: ' . $parentClass->getName();
-                    }
-
-                    $errors[] = RuleErrorBuilder::message(
-                        sprintf(
-                            'Parameter $%s uses concrete class %s instead of an interface or abstract class. %s',
-                            is_string($param->var->name) ? $param->var->name : $param->var->name->getType(),
-                            $typeName,
-                            implode('. ', $suggestions)
-                        )
-                    )->build();
-                }
+            $error = $this->validateParameter($param);
+            if ($error !== null) {
+                $errors[] = $error;
             }
         }
 
         return $errors;
     }
 
-    private function isBuiltInType(string $type): bool
+    private function validateParameter(Node\Param $param): ?RuleError
     {
-        $builtInTypes = [
-            'string', 'int', 'float', 'bool', 'array', 'object',
-            'callable', 'iterable', 'mixed', 'void', 'never',
-        ];
+        if (!$param->type instanceof Node\Name) {
+            return null;
+        }
 
-        return in_array(strtolower($type), $builtInTypes);
+        if ($param->var instanceof Error) {
+            return null;
+        }
+
+        $typeName = $param->type->toString();
+
+        // Skip if the type doesn't exist in reflection
+        if (!$this->reflectionProvider->hasClass($typeName)) {
+            return null;
+        }
+
+        $classReflection = $this->reflectionProvider->getClass($typeName);
+
+        // Skip interfaces - they are always acceptable
+        if ($classReflection->isInterface()) {
+            return null;
+        }
+
+        // Skip abstract classes - they are acceptable
+        if ($classReflection->isAbstract()) {
+            return null;
+        }
+
+        $reflection = $classReflection->getNativeReflection();
+
+        // This is a concrete class - check if it has interfaces or extends an abstract class
+        $interfaces = class_implements($typeName);
+        $parentClass = $reflection->getParentClass();
+        $hasAbstractParent = $parentClass && $parentClass->isAbstract();
+
+        // If there are no interfaces and no abstract parent, it's acceptable (no violation)
+        if (empty($interfaces) && !$hasAbstractParent) {
+            return null;
+        }
+
+        // Build error with suggestions
+        $suggestions = [];
+
+        if (!empty($interfaces)) {
+            $suggestions[] = 'Available interfaces: ' . implode(', ', $interfaces);
+        }
+
+        if ($hasAbstractParent) {
+            $suggestions[] = 'Abstract parent: ' . $parentClass->getName();
+        }
+
+        return RuleErrorBuilder::message(
+            sprintf(
+                'Parameter $%s uses concrete class %s instead of an interface or abstract class. %s',
+                is_string($param->var->name) ? $param->var->name : $param->var->name->getType(),
+                $typeName,
+                implode('. ', $suggestions)
+            )
+        )->build();
     }
 }
