@@ -7,3 +7,8 @@ parameters:
         - rules
         - tests
     checkMissingCallableSignature: true
+    ignoreErrors:
+        # Test fixture properties are intentionally write-only for testing purposes
+        -
+            message: "#^Property .* is never read, only written\\.$#"
+            path: tests/rules/Fixtures/RequireAbstractionInDependenciesFixture.php
