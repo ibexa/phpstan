@@ -38,7 +38,7 @@ final class RequireClosureReturnTypeRule implements Rule
             return [
                 RuleErrorBuilder::message(
                     sprintf('%s is missing a return type declaration', $nodeType)
-                )->identifier('phpstan.requireClosureReturnType')->build(),
+                )->identifier('Ibexa.requireClosureReturnType')->build(),
             ];
         }
 
