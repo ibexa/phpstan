@@ -25,7 +25,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Ibexa\\Tests\\PHPStan\\Rules\\": "tests/rules/"
+            "Ibexa\\Tests\\PHPStan\\Rules\\": "tests/rules/",
+            "Ibexa\\Tests\\PHPStan\\Rules\\Data\\": "tests/rules/data/"
         }
     },
     "scripts": {

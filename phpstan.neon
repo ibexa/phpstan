@@ -3,4 +3,6 @@ parameters:
     paths:
         - rules
         - tests
+    excludePaths:
+        - tests/rules/data/*
     checkMissingCallableSignature: true
