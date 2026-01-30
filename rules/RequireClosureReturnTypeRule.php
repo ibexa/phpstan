@@ -23,6 +23,9 @@ final class RequireClosureReturnTypeRule implements Rule
         return Node\Expr::class;
     }
 
+    /**
+     * @return list<\PHPStan\Rules\IdentifierRuleError>
+     */
     public function processNode(Node $node, Scope $scope): array
     {
         if (!$node instanceof Node\Expr\Closure && !$node instanceof Node\Expr\ArrowFunction) {
@@ -35,7 +38,7 @@ final class RequireClosureReturnTypeRule implements Rule
             return [
                 RuleErrorBuilder::message(
                     sprintf('%s is missing a return type declaration', $nodeType)
-                )->build(),
+                )->identifier('phpstan.requireClosureReturnType')->build(),
             ];
         }
 
