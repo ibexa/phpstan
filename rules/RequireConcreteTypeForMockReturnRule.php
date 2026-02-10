@@ -25,7 +25,7 @@ use PHPStan\Rules\RuleErrorBuilder;
 /**
  * @implements Rule<ClassMethod>
  */
-final readonly class RequireMockObjectInReturnTypeRule implements Rule
+final readonly class RequireConcreteTypeForMockReturnRule implements Rule
 {
     public function getNodeType(): string
     {
@@ -45,13 +45,13 @@ final readonly class RequireMockObjectInReturnTypeRule implements Rule
             return [];
         }
 
-        if ($this->typeNodeIncludesMockObject($node->returnType)) {
+        if (!$this->typeNodeIsMockObjectOnly($node->returnType)) {
             return [];
         }
 
         return [
-            RuleErrorBuilder::message('Method returns a mock but return type is missing MockObject intersection.')
-                ->identifier('Ibexa.requireMockObjectReturnType')
+            RuleErrorBuilder::message('Method returns a mock and declares only MockObject as return type. Use an intersection with a concrete type.')
+                ->identifier('Ibexa.requireConcreteTypeForMockReturn')
                 ->build(),
         ];
     }
@@ -114,22 +114,49 @@ final readonly class RequireMockObjectInReturnTypeRule implements Rule
         return true;
     }
 
-    private function typeNodeIncludesMockObject(Node $type): bool
+    private function typeNodeIsMockObjectOnly(Node $type): bool
     {
         if ($type instanceof NullableType) {
-            return $this->typeNodeIncludesMockObject($type->type);
+            return $this->typeNodeIsMockObjectOnly($type->type);
         }
 
-        if ($type instanceof UnionType || $type instanceof IntersectionType) {
+        if ($type instanceof IntersectionType) {
+            $hasMockObject = false;
             foreach ($type->types as $innerType) {
-                if ($this->typeNodeIncludesMockObject($innerType)) {
-                    return true;
+                if ($this->isMockObjectType($innerType)) {
+                    $hasMockObject = true;
+                    continue;
                 }
+
+                return false;
             }
 
-            return false;
+            return $hasMockObject;
         }
 
+        if ($type instanceof UnionType) {
+            $hasMockObject = false;
+            foreach ($type->types as $innerType) {
+                if ($innerType instanceof Name && $innerType->getLast() === 'null') {
+                    continue;
+                }
+
+                if ($this->isMockObjectType($innerType)) {
+                    $hasMockObject = true;
+                    continue;
+                }
+
+                return false;
+            }
+
+            return $hasMockObject;
+        }
+
+        return $this->isMockObjectType($type);
+    }
+
+    private function isMockObjectType(Node $type): bool
+    {
         if ($type instanceof Identifier) {
             return $type->toString() === 'MockObject';
         }

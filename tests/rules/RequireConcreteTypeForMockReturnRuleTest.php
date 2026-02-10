@@ -8,28 +8,28 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\PHPStan\Rules;
 
-use Ibexa\PHPStan\Rules\RequireMockObjectInReturnTypeRule;
+use Ibexa\PHPStan\Rules\RequireConcreteTypeForMockReturnRule;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
 /**
- * @extends RuleTestCase<RequireMockObjectInReturnTypeRule>
+ * @extends RuleTestCase<RequireConcreteTypeForMockReturnRule>
  */
-final class RequireMockObjectInReturnTypeRuleTest extends RuleTestCase
+final class RequireConcreteTypeForMockReturnRuleTest extends RuleTestCase
 {
     protected function getRule(): Rule
     {
-        return new RequireMockObjectInReturnTypeRule();
+        return new RequireConcreteTypeForMockReturnRule();
     }
 
     public function testRule(): void
     {
         $this->analyse(
-            [__DIR__ . '/Fixtures/RequireMockObjectInReturnTypeFixture.php'],
+            [__DIR__ . '/Fixtures/RequireConcreteTypeForMockReturnFixture.php'],
             [
                 [
-                    'Method returns a mock but return type is missing MockObject intersection.',
-                    15,
+                    'Method returns a mock and declares only MockObject as return type. Use an intersection with a concrete type.',
+                    27,
                 ],
             ]
         );

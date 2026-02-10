@@ -10,7 +10,7 @@ namespace Ibexa\Tests\PHPStan\Rules\Fixtures;
 
 use PHPUnit\Framework\TestCase;
 
-final class ReturnMockTypeTest extends TestCase
+final class ConcreteMockReturnTypeFixture extends TestCase
 {
     private function createFoo(): Foo
     {
@@ -20,6 +20,11 @@ final class ReturnMockTypeTest extends TestCase
     }
 
     private function createFooOk(): Foo&MockObject
+    {
+        return $this->createMock(Foo::class);
+    }
+
+    private function createMockObjectOnly(): MockObject
     {
         return $this->createMock(Foo::class);
     }
