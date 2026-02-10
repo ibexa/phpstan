@@ -1,0 +1,3 @@
+rules:
+    - Ibexa\PHPStan\Rules\RequireMockObjectInPropertyTypeRule
+    - Ibexa\PHPStan\Rules\RequireConcreteTypeForMockReturnRule
