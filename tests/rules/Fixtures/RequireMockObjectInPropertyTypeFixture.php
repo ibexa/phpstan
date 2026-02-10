@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\PHPStan\Rules\Data;
+namespace Ibexa\Tests\PHPStan\Rules\Fixtures;
 
 use PHPUnit\Framework\TestCase;
 

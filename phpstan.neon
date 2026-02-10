@@ -4,5 +4,5 @@ parameters:
         - rules
         - tests
     excludePaths:
-        - tests/rules/data/*
+        - tests/rules/Fixtures/*
     checkMissingCallableSignature: true

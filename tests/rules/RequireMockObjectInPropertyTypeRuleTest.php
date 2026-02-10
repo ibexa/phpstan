@@ -25,7 +25,7 @@ final class RequireMockObjectInPropertyTypeRuleTest extends RuleTestCase
     public function testRule(): void
     {
         $this->analyse(
-            [__DIR__ . '/data/require-mockobject-property.php'],
+            [__DIR__ . '/Fixtures/RequireMockObjectInPropertyTypeFixture.php'],
             [
                 [
                     'Property typed as MockObject only in PHPDoc. Use intersection type with MockObject.',

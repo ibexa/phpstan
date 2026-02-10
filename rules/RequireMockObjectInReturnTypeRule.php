@@ -25,7 +25,7 @@ use PHPStan\Rules\RuleErrorBuilder;
 /**
  * @implements Rule<ClassMethod>
  */
-final class RequireMockObjectInReturnTypeRule implements Rule
+final readonly class RequireMockObjectInReturnTypeRule implements Rule
 {
     public function getNodeType(): string
     {
@@ -51,7 +51,7 @@ final class RequireMockObjectInReturnTypeRule implements Rule
 
         return [
             RuleErrorBuilder::message('Method returns a mock but return type is missing MockObject intersection.')
-                ->identifier('tests.mockObject.returnType')
+                ->identifier('Ibexa.requireMockObjectReturnType')
                 ->build(),
         ];
     }

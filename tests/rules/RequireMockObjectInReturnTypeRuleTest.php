@@ -25,7 +25,7 @@ final class RequireMockObjectInReturnTypeRuleTest extends RuleTestCase
     public function testRule(): void
     {
         $this->analyse(
-            [__DIR__ . '/data/require-mockobject-return.php'],
+            [__DIR__ . '/Fixtures/RequireMockObjectInReturnTypeFixture.php'],
             [
                 [
                     'Method returns a mock but return type is missing MockObject intersection.',

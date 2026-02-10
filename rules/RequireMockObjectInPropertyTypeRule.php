@@ -22,7 +22,7 @@ use PHPStan\Rules\RuleErrorBuilder;
 /**
  * @implements Rule<Property>
  */
-final class RequireMockObjectInPropertyTypeRule implements Rule
+final readonly class RequireMockObjectInPropertyTypeRule implements Rule
 {
     public function getNodeType(): string
     {
@@ -48,7 +48,7 @@ final class RequireMockObjectInPropertyTypeRule implements Rule
 
         return [
             RuleErrorBuilder::message('Property typed as MockObject only in PHPDoc. Use intersection type with MockObject.')
-                ->identifier('tests.mockObject.propertyType')
+                ->identifier('Ibexa.requireMockObjectPropertyType')
                 ->build(),
         ];
     }
