@@ -7,8 +7,8 @@
     ],
     "require": {
         "php": "^7.4 || ^8.0",
-        "ibexa/core": "4.6.x-dev",
-        "ibexa/doctrine-schema": "4.6.x-dev"
+        "ibexa/core": "4.6.x-dev || ^4.6",
+        "ibexa/doctrine-schema": "4.6.x-dev || ^4.6"
     },
     "require-dev": {
         "ibexa/code-style": "~2.0.0",
