@@ -18,17 +18,12 @@ jobs:
         steps:
             -   uses: actions/checkout@v4
 
-            -   name: Setup PHP Action
-                uses: shivammathur/setup-php@v2
+            -   uses: ibexa/gh-workflows/actions/composer-install@main
                 with:
-                    php-version: ${{ matrix.php }}
-                    coverage: none
-                    extensions: 'pdo_sqlite, gd'
-                    tools: cs2pr
-
-            -   uses: ramsey/composer-install@v3
-                with:
-                    dependency-versions: "highest"
+                    gh-client-id: ${{ secrets.AUTOMATION_CLIENT_ID }}
+                    gh-client-secret: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
+                    satis-network-key: ${{ secrets.SATIS_NETWORK_KEY }}
+                    satis-network-token: ${{ secrets.SATIS_NETWORK_TOKEN }}
 
             -   name: Run code style check
                 run: composer run-script check-cs -- --format=checkstyle | cs2pr
@@ -44,21 +39,17 @@ jobs:
                 php:
                     - '7.4'
                     - '8.3'
+                    - '8.4'
 
         steps:
             -   uses: actions/checkout@v4
 
-            -   name: Setup PHP Action
-                uses: shivammathur/setup-php@v2
+            -   uses: ibexa/gh-workflows/actions/composer-install@main
                 with:
-                    php-version: ${{ matrix.php }}
-                    coverage: none
-                    extensions: pdo_sqlite, gd
-                    tools: cs2pr
-
-            -   uses: ramsey/composer-install@v3
-                with:
-                    dependency-versions: "highest"
+                    gh-client-id: ${{ secrets.AUTOMATION_CLIENT_ID }}
+                    gh-client-secret: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
+                    satis-network-key: ${{ secrets.SATIS_NETWORK_KEY }}
+                    satis-network-token: ${{ secrets.SATIS_NETWORK_TOKEN }}
                     composer-options: "--prefer-dist --no-progress --no-suggest"
 
             -   name: Setup problem matchers for PHPUnit
