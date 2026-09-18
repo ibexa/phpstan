@@ -4,6 +4,7 @@
         cacheDirectory=".phpunit.cache"
         bootstrap="vendor/autoload.php"
         failOnWarning="true"
+        failOnNotice="true"
         failOnDeprecation="true"
         displayDetailsOnTestsThatTriggerDeprecations="true"
         colors="true">
