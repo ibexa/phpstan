@@ -4,10 +4,18 @@
         cacheDirectory=".phpunit.cache"
         bootstrap="vendor/autoload.php"
         failOnWarning="true"
+        failOnNotice="true"
+        failOnDeprecation="true"
+        displayDetailsOnTestsThatTriggerDeprecations="true"
         colors="true">
     <testsuites>
         <testsuite name="rules">
             <directory>tests/rules</directory>
         </testsuite>
     </testsuites>
+    <source baseline="phpunit.baseline.xml" ignoreIndirectDeprecations="false" ignoreSuppressionOfDeprecations="true">
+        <include>
+            <directory>rules</directory>
+        </include>
+    </source>
 </phpunit>
