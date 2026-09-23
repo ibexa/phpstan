@@ -8,3 +8,5 @@ parameters:
 rules:
     - Ibexa\PHPStan\Rules\NoConfigResolverParametersInConstructorRule
     - Ibexa\PHPStan\Rules\RequireClosureReturnTypeRule
+    - PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule
+    - PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsCallableRule
