@@ -12,7 +12,7 @@
         "phpstan/phpstan-strict-rules": "^2"
     },
     "require-dev": {
-        "ibexa/code-style": "~2.0.0",
+        "ibexa/code-style": "~2.3.1",
         "phpstan/phpstan": "^2",
         "phpstan/phpstan-phpunit": "^2",
         "phpstan/phpstan-symfony": "^2",

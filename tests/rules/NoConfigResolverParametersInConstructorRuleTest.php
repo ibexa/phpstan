@@ -19,7 +19,7 @@ final class NoConfigResolverParametersInConstructorRuleTest extends RuleTestCase
 {
     protected function getRule(): Rule
     {
-       return new NoConfigResolverParametersInConstructorRule();
+        return new NoConfigResolverParametersInConstructorRule();
     }
 
     public function testRule(): void

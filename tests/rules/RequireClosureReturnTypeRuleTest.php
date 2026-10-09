@@ -19,7 +19,7 @@ final class RequireClosureReturnTypeRuleTest extends RuleTestCase
 {
     protected function getRule(): Rule
     {
-       return new RequireClosureReturnTypeRule();
+        return new RequireClosureReturnTypeRule();
     }
 
     public function testRule(): void
