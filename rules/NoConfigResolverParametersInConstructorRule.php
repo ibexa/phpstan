@@ -62,8 +62,7 @@ final class NoConfigResolverParametersInConstructorRule implements Rule
         }
 
         return [
-            RuleErrorBuilder
-                ::message('Referring to ConfigResolver parameters in constructor is not allowed due to potential scope change.')
+            RuleErrorBuilder::message('Referring to ConfigResolver parameters in constructor is not allowed due to potential scope change.')
                 ->identifier('Ibexa.noConfigResolverParametersInConstructor')
                 ->nonIgnorable()
                 ->build(),
