@@ -10,9 +10,11 @@ namespace Ibexa\PHPStan\Rules;
 
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use PhpParser\Node;
+use PhpParser\Node\Identifier;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
+use PHPStan\ShouldNotHappenException;
 use PHPStan\Type\ObjectType;
 
 /**
@@ -26,11 +28,13 @@ final class NoConfigResolverParametersInConstructorRule implements Rule
     }
 
     /**
-     * @throws \PHPStan\ShouldNotHappenException
+     * @throws ShouldNotHappenException
      */
-    public function processNode(Node $node, Scope $scope): array
-    {
-        if (!$node->name instanceof Node\Identifier) {
+    public function processNode(
+        Node $node,
+        Scope $scope
+    ): array {
+        if (!$node->name instanceof Identifier) {
             return [];
         }
 
@@ -39,7 +43,7 @@ final class NoConfigResolverParametersInConstructorRule implements Rule
             return [];
         }
 
-        /** @var \PhpParser\Node\Identifier $nodeName */
+        /** @var Identifier $nodeName */
         $nodeName = $node->name;
         $methodName = $nodeName->name;
 
