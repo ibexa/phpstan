@@ -19,6 +19,7 @@ use PhpParser\Node\NullableType;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\UnionType;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\IdentifierRuleError;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 
@@ -33,10 +34,12 @@ final readonly class RequireConcreteTypeForMockReturnRule implements Rule
     }
 
     /**
-     * @return list<\PHPStan\Rules\IdentifierRuleError>
+     * @return list<IdentifierRuleError>
      */
-    public function processNode(Node $node, Scope $scope): array
-    {
+    public function processNode(
+        Node $node,
+        Scope $scope
+    ): array {
         if ($node->returnType === null || $node->stmts === null) {
             return [];
         }
@@ -95,11 +98,11 @@ final readonly class RequireConcreteTypeForMockReturnRule implements Rule
     }
 
     /**
-     * @param \PhpParser\Node\Expr\MethodCall|\PhpParser\Node\Expr\StaticCall $call
+     * @param MethodCall|StaticCall $call
      */
     private function isCreateMockCall(Node $call): bool
     {
-        if (!$call->name instanceof Node\Identifier) {
+        if (!$call->name instanceof Identifier) {
             return false;
         }
 

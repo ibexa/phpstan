@@ -16,10 +16,6 @@ final class PropertyMockTypeTest extends TestCase
     private Foo $foo;
 }
 
-final class Foo
-{
-}
+final class Foo {}
 
-interface MockObject
-{
-}
+interface MockObject {}

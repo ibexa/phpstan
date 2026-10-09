@@ -19,7 +19,7 @@ final class ConcreteMockReturnTypeFixture extends TestCase
         return $foo;
     }
 
-    private function createFooOk(): Foo&MockObject
+    private function createFooOk(): Foo & MockObject
     {
         return $this->createMock(Foo::class);
     }
@@ -30,10 +30,6 @@ final class ConcreteMockReturnTypeFixture extends TestCase
     }
 }
 
-final class Foo
-{
-}
+final class Foo {}
 
-interface MockObject
-{
-}
+interface MockObject {}
