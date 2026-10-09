@@ -23,8 +23,10 @@ final class RequireClosureReturnTypeRule implements Rule
         return Node\Expr::class;
     }
 
-    public function processNode(Node $node, Scope $scope): array
-    {
+    public function processNode(
+        Node $node,
+        Scope $scope
+    ): array {
         if (!$node instanceof Node\Expr\Closure && !$node instanceof Node\Expr\ArrowFunction) {
             return [];
         }
