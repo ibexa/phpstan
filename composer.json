@@ -6,13 +6,14 @@
         "ibexa-dxp"
     ],
     "require": {
-        "php": ">=8.3",
+        "php": ">=8.5",
         "ibexa/core": "~6.0.x-dev || ^6.0",
         "ibexa/doctrine-schema": "~6.0.x-dev || ^6.0",
         "phpstan/phpstan-strict-rules": "^2"
     },
     "require-dev": {
         "ibexa/code-style": "~2.3.1",
+        "ibexa/doctrine-migrations": "~6.0.x-dev",
         "phpstan/phpstan": "^2",
         "phpstan/phpstan-phpunit": "^2",
         "phpstan/phpstan-symfony": "^2",

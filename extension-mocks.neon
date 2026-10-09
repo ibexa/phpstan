@@ -1,3 +1,4 @@
 rules:
     - Ibexa\PHPStan\Rules\RequireMockObjectInPropertyTypeRule
     - Ibexa\PHPStan\Rules\RequireConcreteTypeForMockReturnRule
+    - Ibexa\PHPStan\Rules\MockMethodRequiresExpectsRule
